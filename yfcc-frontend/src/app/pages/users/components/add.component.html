@@ -1,0 +1,236 @@
+<div class=" header bg-danger pb-6">
+    <div class=" container-fluid">
+        <div class=" header-body">
+            <div class=" row align-items-center py-4">
+                <div class=" col-lg-6 col-7">
+                    <h6 class=" h2 text-white d-inline-block mb-0">Users</h6>
+
+                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                        <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> <i class=" fas fa-home"> </i> </a>
+                            </li>
+
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> Users </a>
+                            </li>
+
+                            <li aria-current="page" class=" breadcrumb-item active">
+                                Add User
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class=" col-lg-6 col-5 text-right">
+                    <a class=" btn btn-sm btn-neutral" routerLink="/user/user"> Back </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" container-fluid mt--6">
+    <div class=" row">
+        <div class=" offset-2 col-lg-8">
+            <div class=" card-wrapper">
+                <div class=" card">
+                    <div class=" card-header">
+                        <h3 class=" mb-0">Add User</h3>
+                    </div>
+
+                    <div class=" card-body">
+                        <form [formGroup]="formdata" (submit)="save()">
+                            <div class=" row">
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-user"> </i>
+                                                </span>
+                                            </div>
+
+                                            <input class=" form-control" placeholder="Enter Name" type="text"
+                                                (focus)="focus = true" (blur)="focus = false" formControlName="name" />
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.name.touched && formdata.controls.name.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-phone"> </i>
+                                                </span>
+                                            </div>
+                                            <input class=" form-control" placeholder="Enter Phone" type="text"
+                                                formControlName="phone" />
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.phone.touched && formdata.controls.phone.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-envelope"> </i>
+                                                </span>
+                                            </div>
+                                            <input class=" form-control" placeholder="Enter Email" type="email"
+                                                formControlName="email" />
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.email.touched && formdata.controls.email.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-key"> </i>
+                                                </span>
+                                            </div>
+                                            <input class=" form-control" placeholder="Enter Password" type="password"
+                                                formControlName="password" />
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.password.touched && formdata.controls.password.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Role</label>
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-users"> </i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control" formControlName="role">
+                                                <option value="player">Player</option>
+                                                <option value="director">Director</option>
+                                                <option value="coach">Coach</option>
+                                                <option value="admin">Admin</option>
+                                            </select>
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.role.touched && formdata.controls.role.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Category</label>
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-list"> </i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control" formControlName="category">
+                                                <option *ngFor="let c of categories" value="{{c._id}}">{{c.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.category.touched && formdata.controls.category.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Team</label>
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-tag"> </i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control" formControlName="team">
+                                                <option *ngFor="let t of teams" value="{{t._id}}">{{t.name}} - {{t.category.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.team.touched && formdata.controls.team.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class=" row">
+                                <div class=" col-md-12">
+                                    <div class=" dropzone dropzone-multiple" id="dropzone-multiple">
+                                        <div class=" fallback">
+                                            <div class=" custom-file">
+                                                <input class="custom-file-input" id="customFileUploadMultiple"
+                                                    multiple="multiple" type="file" name="myFiles" />
+
+                                                <label class=" custom-file-label" for="customFileUploadMultiple">
+                                                    Choose file
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <ul
+                                            class=" dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+                                            <li class=" list-group-item px-0">
+                                                <div class=" row align-items-center">
+                                                    <div class=" col-auto">
+                                                        <div class=" avatar">
+                                                            <img alt="..." class=" avatar-img rounded"
+                                                                data-dz-thumbnail="" src="..." />
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col ml--3">
+                                                        <h4 class=" mb-1" data-dz-name="">...</h4>
+
+                                                        <p class=" small text-muted mb-0" data-dz-size="">...</p>
+                                                    </div>
+                                                    <div class=" col-auto">
+                                                        <button data-dz-remove="true" class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 row">
+                                <div class=" col-md-6">
+                                    <button type="submit" class="btn btn-sm btn-success">Save</button>
+                                    <a routerLink="/user/user" class="btn btn-sm btn-default">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- <div class=" card">
+                    <div class=" card-header">
+                        <h3 class=" mb-0">Text editor</h3>
+                    </div>
+
+                    <div class=" card-body">
+                        <form>
+                            <div id="quill" data-toggle="quill"></div>
+                        </form>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

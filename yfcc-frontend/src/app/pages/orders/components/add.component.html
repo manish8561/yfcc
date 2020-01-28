@@ -1,0 +1,153 @@
+<div class=" header bg-danger pb-6">
+    <div class=" container-fluid">
+        <div class=" header-body">
+            <div class=" row align-items-center py-4">
+                <div class=" col-lg-6 col-7">
+                    <h6 class=" h2 text-white d-inline-block mb-0">Schedules</h6>
+
+                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                        <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> <i class=" fas fa-home"> </i> </a>
+                            </li>
+
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> Schedules </a>
+                            </li>
+
+                            <li aria-current="page" class=" breadcrumb-item active">
+                                Add Schedule
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class=" col-lg-6 col-5 text-right">
+                    <a class=" btn btn-sm btn-neutral" routerLink="/schedule"> Back </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" container-fluid mt--6">
+    <div class=" row">
+        <div class=" offset-2 col-lg-8">
+            <div class=" card-wrapper">
+                <div class=" card">
+                    <div class=" card-header">
+                        <h3 class=" mb-0">Add Schedule</h3>
+                    </div>
+
+                    <div class=" card-body">
+                        <form [formGroup]="formdata" (submit)="save()">
+                            <div class=" row">
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Category</label>
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-list"> </i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control" formControlName="category"
+                                                [ngClass]="{'is-invalid': formdata.controls.category.touched && formdata.controls.category.hasError('required')}">
+                                                <option *ngFor="let c of categories" value="{{c._id}}">{{c.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.category.touched && formdata.controls.category.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Days</label>
+                                        <div class=" input-group input-group-merge">
+                                            <div class=" input-group-prepend">
+                                                <span class=" input-group-text">
+                                                    <i class=" fas fa-tag"> </i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control" formControlName="days"
+                                                [ngClass]="{'is-invalid': formdata.controls.days.touched && formdata.controls.days.hasError('required')}">
+                                                <option>Sunday</option>
+                                                <option>Monday</option>
+                                                <option>Tuesday</option>
+                                                <option>Wednesday</option>
+                                                <option>Thrusday</option>
+                                                <option>Friday</option>
+                                                <option>Saturday</option>
+                                            </select>
+                                        </div>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.days.touched && formdata.controls.days.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label class=" form-control-label" for="exampleDatepicker">
+                                            Start Time
+                                        </label>
+                                        <timepicker [showMeridian]="isMeridian" [formControlName]="'startTime'">
+                                        </timepicker>
+
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.startTime.touched && formdata.controls.startTime.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label class=" form-control-label" for="exampleDatepicker">
+                                            End Time
+                                        </label>
+                                        <timepicker [showMeridian]="isMeridian" [formControlName]="'endTime'">
+                                        </timepicker>
+
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.endTime.touched && formdata.controls.endTime.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Location</label>
+                                        <textarea class="form-control" placeholder="Enter Location"
+                                            [ngClass]="{'is-invalid': formdata.controls.location.touched && formdata.controls.location.hasError('required')}"
+                                            formControlName="location"></textarea>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.location.touched && formdata.controls.location.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label for="">Venue</label>
+                                        <textarea class="form-control" placeholder="Enter Venue"
+                                            [ngClass]="{'is-invalid': formdata.controls.venue.touched && formdata.controls.venue.hasError('required')}"
+                                            formControlName="venue"></textarea>
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.venue.touched && formdata.controls.venue.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 row">
+                                <div class=" col-md-6">
+                                    <button type="submit" class="btn btn-sm btn-success">Save</button>
+                                    <a routerLink="/schedule" class="btn btn-sm btn-default">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

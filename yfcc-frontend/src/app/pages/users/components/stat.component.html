@@ -1,0 +1,89 @@
+<div class=" header bg-danger pb-6">
+    <div class=" container-fluid">
+        <div class=" header-body">
+            <div class=" row align-items-center py-4">
+                <div class=" col-lg-6 col-7">
+                    <h6 class=" h2 text-white d-inline-block mb-0">Users</h6>
+
+                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                        <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> <i class=" fas fa-home"> </i> </a>
+                            </li>
+
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> Users </a>
+                            </li>
+
+                            <li aria-current="page" class=" breadcrumb-item active">
+                                Stat User
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class=" col-lg-6 col-5 text-right">
+                    <a class=" btn btn-sm btn-neutral" routerLink="/post"> Back </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" container-fluid mt--6">
+    <div class=" row">
+        <div class=" offset-2 col-lg-8">
+            <div class=" card-wrapper">
+                <div class=" card">
+                    <div class=" card-header">
+                        <h3 class=" mb-0">Stat User</h3>
+                    </div>
+
+                    <div class=" card-body">
+                        <form [formGroup]="formdata" (submit)="save()">
+                            <div class=" row">
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label>Age</label>
+                                        <input class=" form-control" placeholder="Enter Age" type="text"
+                                            formControlName="age" />
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.age.touched && formdata.controls.age.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label>Goals</label>
+                                        <input class=" form-control" placeholder="Enter Goals" type="number"
+                                            formControlName="goals" />
+
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.goals.touched && formdata.controls.goals.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class=" form-group">
+                                        <label>Position</label>
+                                        <input class=" form-control" placeholder="Enter Goals" type="text"
+                                        formControlName="position" />
+                                        <div style="color:red"
+                                            *ngIf="formdata.controls.position.touched && formdata.controls.position.hasError('required')">
+                                            Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 row">
+                                <div class=" col-md-6">
+                                    <button type="submit" class="btn btn-sm btn-success">Save</button>
+                                    <a routerLink="/user/user" class="btn btn-sm btn-default">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
