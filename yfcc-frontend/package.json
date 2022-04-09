@@ -36,7 +36,7 @@
     "jwt-decode": "^2.2.0",
     "list.js": "1.5.0",
     "mobius1-selectr": "2.4.13",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-bootstrap": "5.1.1",
     "ngx-chips": "2.0.2",
     "ngx-clipboard": "12.2.0",
